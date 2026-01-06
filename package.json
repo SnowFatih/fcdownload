@@ -1,0 +1,54 @@
+{
+  "name": "fc-download",
+  "title": "FC Download",
+  "description": "Telecharge des videos et musiques YouTube directement depuis Raycast. MP4 haute qualite ou extraction MP3. Prerequis: yt-dlp et ffmpeg (brew install yt-dlp ffmpeg)",
+  "icon": "icon.png",
+  "author": "fatih",
+  "categories": ["Media", "Productivity"],
+  "license": "MIT",
+  "keywords": ["youtube", "download", "mp3", "mp4", "yt-dlp", "video", "music"],
+  "commands": [
+    {
+      "name": "download",
+      "title": "Download YouTube",
+      "subtitle": "FC Download",
+      "description": "Telecharger une video ou audio depuis YouTube. Collez l'URL et choisissez MP4 ou MP3.",
+      "mode": "view"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "downloadPath",
+      "title": "Dossier de telechargement",
+      "description": "Ou sauvegarder les fichiers telecharges",
+      "type": "directory",
+      "required": false,
+      "default": "~/Downloads"
+    },
+    {
+      "name": "ytdlpPath",
+      "title": "Chemin yt-dlp",
+      "description": "Chemin vers l'executable yt-dlp",
+      "type": "textfield",
+      "required": false,
+      "default": "/opt/homebrew/bin/yt-dlp"
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.64.0"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^1.0.8",
+    "@types/node": "^20.10.0",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "build": "ray build -e dist",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}
