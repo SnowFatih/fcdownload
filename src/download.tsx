@@ -8,7 +8,7 @@ import {
   openExtensionPreferences,
   Clipboard,
 } from "@raycast/api";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { exec } from "child_process";
 import { homedir } from "os";
 import path from "path";
@@ -20,11 +20,6 @@ interface Preferences {
 
 type Format = "mp4" | "mp3";
 
-interface ClipboardItem {
-  content: string;
-  timestamp: Date;
-}
-
 function isYouTubeUrl(text: string): boolean {
   return text.includes("youtube.com/watch") || text.includes("youtu.be/");
 }
@@ -33,7 +28,6 @@ export default function Command() {
   const [url, setUrl] = useState("");
   const [format, setFormat] = useState<Format>("mp3");
   const [isLoading, setIsLoading] = useState(false);
-  const [clipboardHistory, setClipboardHistory] = useState<ClipboardItem[]>([]);
 
   const preferences = getPreferenceValues<Preferences>();
 
@@ -111,7 +105,7 @@ export default function Command() {
         toast.message = `Fichier sauvegardé dans ${downloadPath}`;
 
         setUrl("");
-      }
+      },
     );
   }
 
@@ -122,7 +116,7 @@ export default function Command() {
         <ActionPanel>
           <Action.SubmitForm title="Télécharger" onSubmit={handleSubmit} />
           <Action
-            title="Coller depuis Clipboard"
+            title="Coller Depuis Clipboard"
             icon={{ source: "clipboard-16" }}
             shortcut={{ modifiers: ["cmd"], key: "v" }}
             onAction={async () => {
@@ -131,12 +125,12 @@ export default function Command() {
             }}
           />
           <Action
-            title="Ouvrir les Preferences"
+            title="Ouvrir Les Preferences"
             onAction={openExtensionPreferences}
             shortcut={{ modifiers: ["cmd", "shift"], key: "p" }}
           />
           <Action.OpenInBrowser
-            title="Ouvrir le Dossier"
+            title="Ouvrir Le Dossier"
             url={`file://${downloadPath}`}
             shortcut={{ modifiers: ["cmd"], key: "o" }}
           />
